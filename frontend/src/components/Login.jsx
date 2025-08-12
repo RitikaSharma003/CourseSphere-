@@ -1,5 +1,5 @@
 import React from "react";
-import "./login.css";
+import "./Login.css";
 import logo from "../../public/logo.webp";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";

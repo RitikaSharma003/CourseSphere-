@@ -1,5 +1,5 @@
 import React from "react";
-import "./Adminlogin.css";
+import "./AdminLogin.css";
 import logo from "../../public/logo.webp";
 import { BACKEND_URL } from "../../utils/utils";
 import toast from "react-hot-toast";

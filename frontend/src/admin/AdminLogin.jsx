@@ -1,20 +1,19 @@
 import React from "react";
-import "./Signup.css";
+import "./Adminlogin.css";
 import logo from "../../public/logo.webp";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../utils/utils";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useState } from "react";
-const Signup = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+const AdminLogin = () => {
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
   const togglePasswordVisibility = (e) => {
     e.preventDefault(); // Prevent form submission
     e.stopPropagation(); // Prevent event bubbling
@@ -26,10 +25,8 @@ const Signup = () => {
     console.log(e.target.value);
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/user/signup`,
+        `${BACKEND_URL}/admin/login`,
         {
-          firstName,
-          lastName,
           email,
           password,
         },
@@ -40,20 +37,22 @@ const Signup = () => {
           },
         }
       );
-      console.log("Signup successful!", response.data);
+      console.log("AdminLogin successful!", response.data);
       toast.success(response.data.message);
-      navigate("/login");
+      navigate("/admin/dashboard");
+      // store the token on browser local storage
+      localStorage.setItem("admin", JSON.stringify(response.data));
     } catch (error) {
       if (error.response) {
-        setErrorMessage(error.response.data.errors || "Signup failed !!");
+        setErrorMessage(error.response.data.errors || "AdminLogin failed !!");
       }
     }
   };
+
   return (
-    <div className="signup-container">
-      <div className="main-content">
-        {/* Header */}
-        <header className="page-header">
+    <div className="login-container">
+      <div className="login-wrapper">
+        <header className="login-header">
           <div className="logo-container">
             <img src={logo} alt="Logo" className="logo-img" />
             <Link to={"/"} className="logo-text">
@@ -61,8 +60,8 @@ const Signup = () => {
             </Link>
           </div>
           <div className="nav-buttons">
-            <Link to={"/login"} className="login-btn">
-              Login
+            <Link to={"/admin/signup"} className="signup-btn">
+              Signup
             </Link>
             <Link to={"/courses"} className="join-btn">
               Join now
@@ -70,42 +69,14 @@ const Signup = () => {
           </div>
         </header>
 
-        {/* Signup Form */}
-        <div className="signup-form">
+        {/* Login Form */}
+        <div className="login-form">
           <h2 className="form-title">
             Welcome to <span className="highlight">CourseSphere</span>
           </h2>
-          <p className="form-subtitle">Just Signup To Join Us!</p>
+          <p className="form-subtitle">Log in to access admin dashboard !</p>
 
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="firstname" className="input-label">
-                Firstname
-              </label>
-              <input
-                type="text"
-                id="firstname"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="form-input"
-                placeholder="Type your firstname"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastname" className="input-label">
-                Lastname
-              </label>
-              <input
-                type="text"
-                id="lastname"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="form-input"
-                placeholder="Type your lastname"
-                required
-              />
-            </div>
-
             <div className="form-group">
               <label htmlFor="email" className="input-label">
                 Email
@@ -147,7 +118,7 @@ const Signup = () => {
               <div className="error-message">{errorMessage}</div>
             )}
             <button type="submit" className="submit-btn">
-              Signup
+              AdminLogin
             </button>
           </form>
         </div>
@@ -156,4 +127,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AdminLogin;

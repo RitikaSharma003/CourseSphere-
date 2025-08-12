@@ -118,7 +118,7 @@
 
 .input-label {
   display: block;
-  color: #9ca3af;
+  color: #6b9aea;
   margin-bottom: 0.5rem;
 }
 
@@ -127,7 +127,7 @@
   padding: 0.75rem;
   border-radius: 0.375rem;
   background: #1f2937;
-  border: 1px solid #374151;
+  border: 1px solid #6a97e0;
   color: white;
 }
 
@@ -146,7 +146,7 @@
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #6b7280;
+  color: #6588cf;
   cursor: pointer;
 }
 
@@ -166,6 +166,7 @@
   cursor: pointer;
   font-weight: 600;
 }
+
 .submit-btn:hover {
   background: #34518d;
   border: 1px solid #8cacf8;

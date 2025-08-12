@@ -1,12 +1,12 @@
 import React from "react";
-import "./Signup.css";
+import "./AdminSignup.css";
 import logo from "../../public/logo.webp";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../utils/utils";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-const Signup = () => {
+const AdminSignup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ const Signup = () => {
     console.log(e.target.value);
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/user/signup`,
+        `${BACKEND_URL}/admin/signup`,
         {
           firstName,
           lastName,
@@ -42,7 +42,7 @@ const Signup = () => {
       );
       console.log("Signup successful!", response.data);
       toast.success(response.data.message);
-      navigate("/login");
+      navigate("/admin/login");
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data.errors || "Signup failed !!");
@@ -61,7 +61,7 @@ const Signup = () => {
             </Link>
           </div>
           <div className="nav-buttons">
-            <Link to={"/login"} className="login-btn">
+            <Link to={"/admin/login"} className="login-btn">
               Login
             </Link>
             <Link to={"/courses"} className="join-btn">
@@ -75,7 +75,7 @@ const Signup = () => {
           <h2 className="form-title">
             Welcome to <span className="highlight">CourseSphere</span>
           </h2>
-          <p className="form-subtitle">Just Signup To Join Us!</p>
+          <p className="form-subtitle">Just Signup to mess with Dashboard !</p>
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -147,7 +147,7 @@ const Signup = () => {
               <div className="error-message">{errorMessage}</div>
             )}
             <button type="submit" className="submit-btn">
-              Signup
+              AdminSignup
             </button>
           </form>
         </div>
@@ -156,4 +156,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AdminSignup;

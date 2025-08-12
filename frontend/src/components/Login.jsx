@@ -1,7 +1,9 @@
 import React from "react";
 import "./login.css";
 import logo from "../../public/logo.webp";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../utils/utils";
 import axios from "axios";
 import { useState } from "react";
 const Login = () => {
@@ -9,11 +11,44 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const togglePasswordVisibility = (e) => {
+    e.preventDefault(); // Prevent form submission
+    e.stopPropagation(); // Prevent event bubbling
+    setShowPassword((prev) => !prev); // Toggle state
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e.target.value);
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/user/login`,
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Login successful!", response.data);
+      toast.success(response.data.message);
+      // store the token on browser local storage
+      localStorage.setItem("user", JSON.stringify(response.data));
+      navigate("/");
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(error.response.data.errors || "Login failed !!");
+      }
+    }
   };
+
   return (
     <div className="login-container">
       <div className="login-wrapper">
@@ -21,7 +56,7 @@ const Login = () => {
           <div className="logo-container">
             <img src={logo} alt="Logo" className="logo-img" />
             <Link to={"/"} className="logo-text">
-              CourseHaven
+              CourseSphere
             </Link>
           </div>
           <div className="nav-buttons">
@@ -37,7 +72,7 @@ const Login = () => {
         {/* Login Form */}
         <div className="login-form">
           <h2 className="form-title">
-            Welcome to <span className="highlight">CourseHaven</span>
+            Welcome to <span className="highlight">CourseSphere</span>
           </h2>
           <p className="form-subtitle">Log in to access paid content!</p>
 
@@ -62,7 +97,7 @@ const Login = () => {
               </label>
               <div className="password-input-container">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -70,7 +105,13 @@ const Login = () => {
                   placeholder="********"
                   required
                 />
-                <span className="password-toggle">👁️</span>
+                <span
+                  className="password-toggle"
+                  onClick={togglePasswordVisibility}
+                  style={{ cursor: "pointer" }}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </span>
               </div>
             </div>
             {errorMessage && (

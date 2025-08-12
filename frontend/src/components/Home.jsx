@@ -3,7 +3,8 @@ import React from "react";
 import "./Home.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { BACKEND_URL } from "../../utils/utils";
+import toast from "react-hot-toast";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
@@ -15,19 +16,40 @@ import logo from "../../public/logo.webp";
 import { Link } from "react-router-dom";
 function Home() {
   const [course, setCourse] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/user/logout`, {
+        withCredentials: true,
+      });
+      toast.success(response.data.message);
+      localStorage.removeItem("user");
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.log("Error in logging out", error);
+      toast.error(error.response.data.errors || "Error in logging out");
+    }
+  };
+
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:4501/api/v1/course/courses",
-          {
-            withCredentials: true, // Essential for cookies/auth
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await axios.get(`${BACKEND_URL}/course/courses`, {
+          withCredentials: true, // Essential for cookies/auth
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
 
         console.log("Courses:", response.data.course);
         setCourse(response.data.course || response.data.courses || []);
@@ -81,24 +103,35 @@ function Home() {
         <header className="page-header">
           <div className="logo-container">
             <img src={logo} alt="CourseHaven Logo" className="logo-image" />
-            <h1 className="logo-text">CourseHaven</h1>
+            <h1 className="logo-text">CourseSphere</h1>
+          </div>
+          <div className="admin-access-container">
+            <Link to="/admin/login" className="admin-access-button">
+              Admin
+            </Link>
           </div>
           <div className="auth-buttons">
-            <button className="logout-button">Logout</button>
-
-            <Link to={"/login"} className="login-button">
-              Login
-            </Link>
-            <Link to={"/signup"} className="signup-button">
-              Sign Up
-            </Link>
+            {isLoggedIn ? (
+              <button onClick={handleLogout} className="logout-button">
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to={"/login"} className="login-button">
+                  Login
+                </Link>
+                <Link to={"/signup"} className="signup-button">
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </header>
 
         {/* section 1*/}
         {/* Main section */}
         <section className="main-section">
-          <h1 className="main-heading">CourseHaven</h1>
+          <h1 className="main-heading">CourseSphere</h1>
 
           <br />
           <p className="main-subtitle">
@@ -147,18 +180,24 @@ function Home() {
               <div className="logo-wrapper">
                 <img
                   src={logo}
-                  alt="CourseHaven Logo"
+                  alt="CourseSphere Logo"
                   className="footer-logo"
                 />
-                <h1 className="footer-brand-name">CourseHaven</h1>
+                <h1 className="footer-brand-name">CourseSphere</h1>
               </div>
               <div className="social-section">
-                <p className="social-title">Follow us</p>
+                <p className="social-title">Follow me</p>
                 <div className="social-icons">
-                  <a href="#" className="social-link">
+                  <a
+                    href="https://www.linkedin.com/in/ritika-sharma-62652023b/"
+                    className="social-link"
+                  >
                     <FaLinkedin className="facebook-icon" />
                   </a>
-                  <a href="#" className="social-link">
+                  <a
+                    href="https://www.instagram.com/ritika_sha_.rma/"
+                    className="social-link"
+                  >
                     <FaInstagram className="instagram-icon" />
                   </a>
                 </div>
@@ -168,18 +207,19 @@ function Home() {
             <div className="footer-links connects">
               <h3 className="footer-heading">connects</h3>
               <ul className="links-list">
-                <li className="link-item">youtube- learn coding</li>
-                <li className="link-item">telegram- learn coding</li>
-                <li className="link-item">Github- learn coding</li>
+                <a
+                  href="https://github.com/RitikaSharma003"
+                  className="link-item"
+                >
+                  My Github
+                </a>
               </ul>
             </div>
 
             <div className="footer-links legal">
-              <h3 className="footer-heading">copyrights &#169; 2024</h3>
+              <h3 className="footer-heading">copyrights &#169; 2025</h3>
               <ul className="links-list">
                 <li className="link-item">Terms & Conditions</li>
-                <li className="link-item">Privacy Policy</li>
-                <li className="link-item">Refund & Cancellation</li>
               </ul>
             </div>
           </div>

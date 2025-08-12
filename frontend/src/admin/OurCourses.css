@@ -1,0 +1,192 @@
+.courses-container-admin {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.courses-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #4554ee;
+}
+
+.dashboard-link {
+  background: #4554ee;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  margin: 0 auto 2rem;
+  display: block;
+  width: fit-content;
+}
+
+.dashboard-link:hover {
+  background-color: #12437c;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .courses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.courses-container-admin {
+  padding: 1rem 2rem; /* Added horizontal padding to reduce card width */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .courses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.course-card {
+  background-color: #1e2457;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #8bb0fa;
+  padding: 1rem;
+}
+.course-card-admin {
+  background-color: #1e2457;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #8bb0fa;
+  padding: 1rem;
+}
+
+/* Image Width and Alignment */
+.course-image {
+  height: 10rem;
+  width: 50%; /* Image width reduced to 50% */
+  object-fit: cover;
+  border-radius: 0.25rem;
+  display: block;
+  margin: 0 auto 1rem; /* Center the image */
+}
+
+.course-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: white;
+}
+
+.course-description {
+  color: #6ea1e8;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.price-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.current-price {
+  color: #5a7bbc;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #4c71bc;
+  margin-left: 0.5rem;
+}
+
+.discount {
+  color: #951dea;
+}
+
+.buy-button {
+  background-color: #4434d7;
+  width: 100%;
+  border: 1px solid #5090f7;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  transition: background-color 300ms;
+}
+
+.buy-button:hover {
+  background-color: #1e3a8a;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem; /* Fixed missing value */
+}
+
+.update-button,
+.delete-button {
+  width: 48%;
+  height: 40px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  padding: 0.5rem 0; /* Proper padding */
+  text-align: center;
+  transition: background-color 0.3s ease;
+
+  /* Ensure text stays inside */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.update-button {
+  background-color: #4554ee;
+  margin-right: 0.5rem; /* Reduced from 1rem */
+}
+
+.delete-button {
+  background-color: #ef4444;
+  margin-left: 0.5rem; /* Reduced from 1rem */
+  padding: 0.5rem 0; /* Fixed typo (was 11rem) */
+}
+
+.update-button:hover {
+  background-color: #12437c;
+}
+
+.delete-button:hover {
+  background-color: #dc2626;
+}

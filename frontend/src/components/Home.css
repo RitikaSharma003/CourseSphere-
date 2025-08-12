@@ -594,7 +594,7 @@ body {
 /* Main section styles */
 .main-section {
   text-align: center;
-  padding: 5rem 0; /* py-20 equivalent (5rem = 80px) */
+  padding: 3rem 0; /* py-20 equivalent (5rem = 80px) */
   margin-top: 0.05rem;
 }
 
@@ -669,13 +669,21 @@ body {
   .secondary-button {
     padding: 0.75rem 1.5rem; /* md:py-3 md:px-6 equivalent */
   }
+
+  .login-button,
+  .signup-button,
+  .logout-button {
+    font-size: 1.125rem;
+    padding: 0.5rem 1.25rem;
+    margin-top: 0.045rem;
+  }
 }
 
 .main-heading {
   font-size: 2rem; /* text-4xl equivalent */
   font-weight: 600; /* font-semibold equivalent */
   color: #223fe3; /* text-orange-500 equivalent */
-  margin-top: 0.15rem;
+  margin-top: 10rem;
 }
 
 /* Responsive styles for small screens (200px-449px) */
@@ -684,9 +692,11 @@ body {
     font-size: 2rem; /* text-4xl equivalent */
     font-weight: 600; /* font-semibold equivalent */
     color: #223fe3; /* text-orange-500 equivalent */
+    margin-top: 10rem;
+  }
+  .main-subtitle {
     margin-top: 0.15rem;
   }
-
   .button-container {
     flex-direction: row; /* Keep buttons in a row */
     flex-wrap: wrap; /* Allow wrapping if needed */
@@ -709,7 +719,7 @@ body {
 /* Main container */
 /* Main container */
 .courses-section {
-  padding: 2.5rem;
+  padding: 1.5rem;
 }
 
 /* Fix for gap between cards */
@@ -770,4 +780,31 @@ body {
 
 .enroll-button:hover {
   background: #2c64be;
+}
+
+/* Admin Access Button Styles */
+/* Admin Button Styles */
+.admin-access-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.admin-access-button {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #2d31a2;
+  border: 2px solid rgb(60, 135, 239);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 5rem;
+}
+
+.admin-access-button:hover {
+  background-color: rgb(132, 179, 244);
+  color: black;
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgb(35, 53, 95);
 }

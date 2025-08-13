@@ -367,13 +367,19 @@
     margin-bottom: 0.5rem;
   }
 
-  .signup-btn,
-  .join-btn {
+  .signup-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
     margin-top: 1rem;
   }
 
+  .join-btn {
+    min-width: 70px;
+
+    padding: 0.5rem 0.9rem;
+    font-size: 0.7rem;
+    margin-top: 0rem;
+  }
   .login-wrapper {
     padding-top: 8rem; /* Space for header + buttons */
   }

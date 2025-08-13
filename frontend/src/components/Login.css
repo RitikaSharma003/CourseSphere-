@@ -370,8 +370,15 @@
   .join-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
-    margin-top: 1rem;
+    margin-top: 0;
   }
+
+  /* .signup-btn,
+  .join-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  } */
 
   .login-wrapper {
     padding-top: 8rem; /* Space for header + buttons */
@@ -399,16 +406,16 @@
 
     padding: 0.5rem 0.9rem;
     font-size: 0.7rem;
-    margin-top: 1rem;
+    margin-top: 0rem;
   }
 
-  .join-btn {
+  /* .join-btn {
     min-width: 70px;
 
     padding: 0.5rem 0.9rem;
     font-size: 0.7rem;
     margin-top: 0rem;
-  }
+  } */
 
   .login-form {
     margin-top: 10rem;

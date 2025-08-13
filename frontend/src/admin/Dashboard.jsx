@@ -13,7 +13,7 @@ import { BACKEND_URL } from "../../utils/utils";
 import logo from "../../public/logo.webp";
 import { FiSearch } from "react-icons/fi";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Dashboard = () => {
   const [course, setCourse] = useState([]);
   const [loading, setLoading] = useState(true);

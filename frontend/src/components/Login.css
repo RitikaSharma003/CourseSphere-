@@ -399,8 +399,17 @@
 
     padding: 0.5rem 0.9rem;
     font-size: 0.7rem;
+    margin-top: 1rem;
+  }
+
+  .join-btn {
+    min-width: 70px;
+
+    padding: 0.5rem 0.9rem;
+    font-size: 0.7rem;
     margin-top: 0rem;
   }
+
   .login-form {
     margin-top: 10rem;
   }

@@ -367,7 +367,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .signup-btn {
+  /* .signup-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
     margin-top: 1rem;
@@ -379,7 +379,15 @@
     padding: 0.5rem 0.9rem;
     font-size: 0.7rem;
     margin-top: 0rem;
+  } */
+
+  .signup-btn,
+  .join-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    margin-top: 0;
   }
+
   .login-wrapper {
     padding-top: 8rem; /* Space for header + buttons */
   }
@@ -406,7 +414,7 @@
 
     padding: 0.5rem 0.9rem;
     font-size: 0.7rem;
-    margin-top: 1rem;
+    margin-top: 0rem;
   }
   .login-form {
     margin-top: 10rem;

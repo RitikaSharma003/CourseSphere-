@@ -31,7 +31,9 @@ app.use(
 //   })
 // );
 
-const allowedOrigins = process.env.FRONTEND_URL;
+const allowedOrigins = process.env.FRONTEND_URL.split(",").map((origin) =>
+  origin.trim()
+);
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
@@ -45,11 +47,7 @@ app.use((req, res, next) => {
 });
 
 // Handle preflight requests
-app.options("*", (req, res) => {
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
-  res.status(204).end();
-});
+
 const port = process.env.PORT || 4500;
 const DB_URI = process.env.MONGO_URI;
 // app.get("/", (req, res) => {

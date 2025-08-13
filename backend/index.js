@@ -22,31 +22,14 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
-// app.use(
-//   cors({
-//     origin: process.env.FRONTEND_URL,
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
-
-const allowedOrigins = process.env.FRONTEND_URL.split(",").map((origin) =>
-  origin.trim()
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URLS,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
-
-// Handle preflight requests
 
 const port = process.env.PORT || 4500;
 const DB_URI = process.env.MONGO_URI;

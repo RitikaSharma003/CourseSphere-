@@ -24,12 +24,13 @@ app.use(
 );
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.options("*", cors());
 const port = process.env.PORT || 4500;
 const DB_URI = process.env.MONGO_URI;
 // app.get("/", (req, res) => {

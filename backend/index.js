@@ -30,7 +30,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.options("*", cors());
 const port = process.env.PORT || 4500;
 const DB_URI = process.env.MONGO_URI;
 // app.get("/", (req, res) => {

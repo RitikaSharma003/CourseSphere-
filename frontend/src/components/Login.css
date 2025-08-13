@@ -339,7 +339,7 @@
     font-size: 0.9rem;
   }
 }
-/* For 400px-200px screens */
+
 @media (max-width: 400px) {
   .login-header {
     top: 0;

@@ -294,7 +294,6 @@
   }
 }
 
-/* Responsive Adjustments */
 @media (max-width: 989px) {
   .login-form {
     padding: 1.5rem;

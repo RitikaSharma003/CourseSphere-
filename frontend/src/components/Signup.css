@@ -250,7 +250,6 @@
   }
 }
 
-/* 700px - 899px */
 @media (max-width: 899px) and (min-width: 700px) {
   .signup-form {
     padding: 2rem;

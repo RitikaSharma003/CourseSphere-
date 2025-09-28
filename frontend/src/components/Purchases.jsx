@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Purchases() {
   const [purchases, setPurchase] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar open state
 
   const navigate = useNavigate();
@@ -27,24 +27,14 @@ function Purchases() {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
-      navigate("/login");
     }
-  }, [token, navigate]);
+  }, []);
   if (!token) {
     navigate("/login");
   }
 
   // Fetch purchases
   useEffect(() => {
-    if (!token) {
-      setErrorMessage("Please log in to view your purchases.");
-      setLoading(false);
-      return;
-    }
-
-    setErrorMessage(null); // Clear previous errors
-    setLoading(true);
-
     const fetchPurchases = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/user/purchases`, {
@@ -54,30 +44,12 @@ function Purchases() {
           withCredentials: true,
         });
         setPurchase(response.data.courseData);
-        setErrorMessage(null);
       } catch (error) {
-        // setErrorMessage("Failed to fetch purchase data");
-        console.error("Purchases API Error:", error);
-        // Check for 404 or 401 specifically
-        if (
-          error.response &&
-          (error.response.status === 404 || error.response.status === 401)
-        ) {
-          setErrorMessage(
-            "Authentication failed or purchase route not found. Please log in again. (Error 404/401)"
-          );
-        } else {
-          setErrorMessage(
-            error.message ||
-              "Failed to fetch purchase data due to a network error."
-          );
-        }
-      } finally {
-        setLoading(false);
+        setErrorMessage("Failed to fetch purchase data");
       }
     };
     fetchPurchases();
-  }, [token]);
+  }, []);
   const handleLogout = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {

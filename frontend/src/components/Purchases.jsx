@@ -27,14 +27,17 @@ function Purchases() {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
+      navigate("/login");
     }
-  }, []);
-  if (!token) {
-    navigate("/login");
-  }
+  }, [token, navigate]);
 
   // Fetch purchases
   useEffect(() => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    setErrorMessage(null);
     const fetchPurchases = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/user/purchases`, {
@@ -49,7 +52,7 @@ function Purchases() {
       }
     };
     fetchPurchases();
-  }, []);
+  }, [token, navigate]);
   const handleLogout = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {

@@ -94,9 +94,9 @@ const Courses = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a href="/purchases" className="nav-link">
+              <Link to="/purchases" className="nav-link">
                 <FaDownload className="nav-icon" /> Purchases
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a href="#" className="nav-link">

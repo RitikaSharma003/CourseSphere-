@@ -7,7 +7,7 @@ import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { BACKEND_URL } from "../../utils/utils";
 import "./Purchases.css";
 import { RiHome2Fill } from "react-icons/ri";
-import { HiMenu, HiX } from "react-icons/hi"; // Icons for sidebar toggle
+import { HiMenu, HiX } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 function Purchases() {
   const [purchases, setPurchase] = useState([]);
@@ -17,7 +17,7 @@ function Purchases() {
 
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
-  const token = user?.token; // using optional chaining to avoid app crashing
+  const token = user?.token;
 
   console.log("purchases: ", purchases);
 
